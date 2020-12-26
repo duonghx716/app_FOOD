@@ -2,17 +2,20 @@
 // https://aboutreact.com/animated-splash-screen/
 
 // import React in our code
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 // import all the components we are going to use
 import {View, Text, Image, StyleSheet} from 'react-native';
 
 const Welcome = ({navigation}) => {
-  const [alignsecond, setAlignsecond] = useState(false);
+  // const [alignsecond, setAlignsecond] = useState(true);
 
-  setTimeout(() => {
-    setAlignsecond(true);
-  }, 3000);
+  useEffect(() => {
+    setTimeout(() => {
+      // setAlignsecond(false);
+      navigation.navigate('Main');
+    }, 3000);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -20,7 +23,7 @@ const Welcome = ({navigation}) => {
         style={{resizeMode: 'center'}}
         source={require('../assets/The_Coffee_House_Logo.png')}
       />
-      {alignsecond ? true : navigation.navigate('Main')}
+      {/* {alignsecond ? null : navigation.navigate('Main')} */}
     </View>
   );
 };

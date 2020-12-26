@@ -9,8 +9,20 @@ const Navigition = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen
+          options={({}) => ({
+            headerShown: false,
+          })}
+          name="Welcome"
+          component={Welcome}
+        />
+        <Stack.Screen
+          options={({}) => ({
+            headerShown: false,
+          })}
+          name="Main"
+          component={Main}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
