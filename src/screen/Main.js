@@ -12,61 +12,59 @@ import MainCuaHang from './cuaHang/MainCuaHang';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-const Main = () => {
+const Main = ({navigation}) => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        tabBarOptions={{
-          labelStyle: {
-            fontSize: 11,
-            justifyContent: 'center',
-            marginBottom: 5,
-          },
-          activeTintColor: '#ea8027',
-          inactiveTintColor: '#666666',
-        }}>
-        <Tab.Screen
-          name="TinTuc"
-          component={MainTinTuc}
-          options={{
-            tabBarLabel: 'Tin Tức',
-            tabBarIcon: ({color}) => (
-              <FontAwesome name="align-justify" size={20} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="DatHang"
-          component={MainDatHang}
-          options={{
-            tabBarLabel: 'Đăt Hàng',
-            tabBarIcon: ({color}) => (
-              <FontAwesome name="motorcycle" size={20} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="CuaHang"
-          component={MainCuaHang}
-          options={{
-            tabBarLabel: 'Cửa Hàng',
-            tabBarIcon: ({color}) => (
-              <FontAwesome name="home" size={20} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="TaiKhoan"
-          component={MainTaiKhoan}
-          options={{
-            tabBarLabel: 'Tài Khoản',
-            tabBarIcon: ({color}) => (
-              <FontAwesome name="user" size={20} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      tabBarOptions={{
+        labelStyle: {
+          fontSize: 11,
+          justifyContent: 'center',
+          marginBottom: 5,
+        },
+        activeTintColor: '#ea8027',
+        inactiveTintColor: '#666666',
+      }}>
+      <Tab.Screen
+        name="TinTuc"
+        component={MainTinTuc}
+        options={{
+          tabBarLabel: 'Tin Tức',
+          tabBarIcon: ({color}) => (
+            <FontAwesome name="align-justify" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="DatHang"
+        component={MainDatHang}
+        options={{
+          tabBarLabel: 'Đăt Hàng',
+          tabBarIcon: ({color}) => (
+            <FontAwesome name="motorcycle" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="CuaHang"
+        component={MainCuaHang}
+        options={{
+          tabBarLabel: 'Cửa Hàng',
+          tabBarIcon: ({color}) => (
+            <FontAwesome name="home" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="TaiKhoan"
+        component={MainTaiKhoan}
+        options={{
+          tabBarLabel: 'Tài Khoản',
+          tabBarIcon: ({color}) => (
+            <FontAwesome name="user" size={20} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

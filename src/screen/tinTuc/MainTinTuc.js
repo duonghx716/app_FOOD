@@ -153,7 +153,7 @@ const MainTinTuc = () => {
               {user_name}
             </Text>
             <View style={{flexDirection: 'row'}}>
-              <Text>Khach hanh moi</Text>
+              <Text>Khách hàng mới</Text>
               <Text style={styles.text_frontWeight_bold}> | {point}</Text>
               <Image source={logo_point} style={styles.logo_point}></Image>
             </View>
