@@ -1,23 +1,37 @@
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import React from 'react';
-import {useState, useEffect} from 'react';
-import {View, Text, Modal} from 'react-native';
-
+import DoAn from './DoAn';
+import PhoBien from './PhoBien';
+import ThucAn from './ThucAn';
+const Tab = createMaterialTopTabNavigator();
 const MainDatHang = () => {
-  const [visible, setVisible] = useState(false);
-  const modal = (
-    <Modal visible={visible}>
-      <View style={{width: 150, height: 150}}>
-        <Text>modal test</Text>
-      </View>
-    </Modal>
-  );
-  useEffect(() => {
-    setVisible(true);
-  }, []);
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      {modal}
-    </View>
+    <Tab.Navigator
+      initialRouteName="PhoBien"
+      tabBarOptions={{
+        activeTintColor: 'black',
+        inactiveTintColor: 'gray',
+        labelStyle: {fontSize: 12},
+        style: {backgroundColor: '#fff'},
+        pressColor: '#ffb042',
+      }}>
+      <Tab.Screen
+        options={{tabBarLabel: 'Phổ Biến'}}
+        name="PhoBien"
+        // component={DoAn}
+        children={() => <PhoBien propName={0} />}
+      />
+      <Tab.Screen
+        name="DoAn"
+        component={DoAn}
+        options={{tabBarLabel: 'Đồ ăn'}}
+      />
+      <Tab.Screen
+        name="ThucAn"
+        component={ThucAn}
+        options={{tabBarLabel: 'Thức ăn'}}
+      />
+    </Tab.Navigator>
   );
 };
 

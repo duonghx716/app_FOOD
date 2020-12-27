@@ -1,18 +1,14 @@
-import 'react-native-gesture-handler';
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
+import 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
-import MainTinTuc from './tinTuc/MainTinTuc';
-import MainTaiKhoan from './taiKhoan/MainTaiKhoan';
-import MainDatHang from './datHang/MainDatHang';
 import MainCuaHang from './cuaHang/MainCuaHang';
+import MainDatHang from './datHang/MainDatHang';
+import MainTaiKhoan from './taiKhoan/MainTaiKhoan';
+import MainTinTuc from './tinTuc/MainTinTuc';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-const Main = ({navigation}) => {
+const Main = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{

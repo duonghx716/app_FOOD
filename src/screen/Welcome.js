@@ -2,10 +2,9 @@
 // https://aboutreact.com/animated-splash-screen/
 
 // import React in our code
-import React, {useState, useEffect} from 'react';
-
+import React, {useEffect} from 'react';
 // import all the components we are going to use
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 
 const Welcome = ({navigation}) => {
   // const [alignsecond, setAlignsecond] = useState(true);

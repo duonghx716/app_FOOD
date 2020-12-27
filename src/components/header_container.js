@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ffffff',
     paddingHorizontal: 10,
-    paddingVertical: 15,
+    paddingVertical: 10,
   },
   profile_header: {
     flex: 1,

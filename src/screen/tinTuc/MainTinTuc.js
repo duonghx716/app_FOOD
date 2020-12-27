@@ -1,12 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, StatusBar, FlatList} from 'react-native';
+import {FlatList, Image, StatusBar, Text, View} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import styles from './styles';
 const MainTinTuc = () => {
   const profile_source = require('../../assets/profile.jpg');
   const logo_point = require('../../assets/logo_point.png');
-  const logo_lua_chon = require('../../assets/moto_logo.png');
+  const tichDiem = require('../../assets/tichDiem.png');
+  const coupon = require('../../assets/coupon.png');
+  const datHang = require('../../assets/datHang.png');
+  const Rewards = require('../../assets/Rewards.png');
   const user_name = 'Dương Hà';
   const rank_user = 'Khách hàng mới';
   const point = 0;
@@ -103,23 +106,17 @@ const MainTinTuc = () => {
     },
   ];
   const Lua_chon = ({image, title}) => (
-    <TouchableOpacity style={{flex: 1, marginHorizontal: 10}}>
+    <TouchableOpacity style={{flex: 1, marginHorizontal: 20}}>
       <Image
         source={image}
         resizeMode="contain"
-        style={{width: 80, height: 80}}
+        style={{width: 60, height: 60}}
       />
       <Text style={{textAlign: 'center', fontSize: 11}}>{title}</Text>
     </TouchableOpacity>
   );
   const Item = ({item}) => (
-    <View
-      style={{
-        margin: 10,
-        backgroundColor: '#ffff',
-        borderRadius: 7,
-        overflow: 'hidden',
-      }}>
+    <View style={styles.view_item}>
       <Image
         source={{
           uri: item.image,
@@ -166,16 +163,16 @@ const MainTinTuc = () => {
       <View style={{height: 10}} />
       <ScrollView>
         <View style={styles.view_lua_chon}>
-          <Lua_chon image={logo_lua_chon} title="Tích Điểm" />
-          <Lua_chon image={logo_lua_chon} title="Đặt Hàng" />
-          <Lua_chon image={logo_lua_chon} title="Coupon" />
-          <Lua_chon image={logo_lua_chon} title="Rewards" />
+          <Lua_chon image={tichDiem} title="Tích Điểm" />
+          <Lua_chon image={datHang} title="Đặt Hàng" />
+          <Lua_chon image={coupon} title="Coupon" />
+          <Lua_chon image={Rewards} title="Rewards" />
         </View>
         <View style={{height: 10}} />
 
         <View style={styles.uu_Dai_Dac_Biet}>
           <View>
-            <Text style={{marginLeft: 10}}>Ưu đãi đặc biệt</Text>
+            <Text style={styles.text_title_luachon}>Ưu đãi đặc biệt</Text>
             <FlatList
               data={DATA}
               horizontal
@@ -185,7 +182,7 @@ const MainTinTuc = () => {
             />
           </View>
           <View>
-            <Text style={{marginLeft: 10}}>Cập nhật từ Nhà</Text>
+            <Text style={styles.text_title_luachon}>Cập nhật từ Nhà</Text>
             <FlatList
               data={DATA}
               horizontal
@@ -195,7 +192,7 @@ const MainTinTuc = () => {
             />
           </View>
           <View>
-            <Text style={{marginLeft: 10}}>#CoffeeLover</Text>
+            <Text style={styles.text_title_luachon}>#CoffeeLover</Text>
             <FlatList
               data={DATA}
               horizontal
@@ -209,72 +206,5 @@ const MainTinTuc = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  imageProfile: {
-    width: 40,
-    height: 40,
-    borderRadius: 40,
-  },
-  header_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 10,
-    paddingVertical: 15,
-  },
-  profile_header: {
-    flex: 1,
-    flexDirection: 'row',
-    marginHorizontal: 10,
-  },
-  logo_point: {
-    width: 15,
-    height: '100%',
-  },
-  text_frontWeight_bold: {
-    fontWeight: 'bold',
-  },
-  view_lua_chon: {
-    backgroundColor: '#ffff',
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-  },
-  uu_Dai_Dac_Biet: {
-    flexDirection: 'column',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-  },
-  text_item: {textAlign: 'center', color: '#ffb042'},
-  text_content: {
-    width: 220,
-    fontSize: 13,
-    paddingBottom: 15,
-    paddingHorizontal: 15,
-    lineHeight: 20,
-  },
-  text_title: {
-    width: 220,
-    fontSize: 16,
-    paddingTop: 15,
-    paddingHorizontal: 15,
-    lineHeight: 25,
-    fontWeight: '800',
-  },
-  TouchableOpacity_item: {
-    flex: 1,
-    paddingVertical: 7,
-    marginHorizontal: 15,
-    marginBottom: 15,
-    borderRadius: 40,
-    width: 120,
-    borderWidth: 1,
-    borderColor: '#ffb042',
-  },
-});
 
 export default MainTinTuc;

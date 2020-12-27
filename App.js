@@ -5,10 +5,8 @@
  * @format
  * @flow strict-local
  */
-import 'react-native-gesture-handler';
 import React from 'react';
-import Main from './src/screen/Main';
-import Welcome from './src/screen/Welcome';
+import 'react-native-gesture-handler';
 import Navigation from './src/navigitor_container/Navigition';
 
 const App = () => {
