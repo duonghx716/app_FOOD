@@ -4,7 +4,7 @@ import React from 'react';
 import Main from '../screen/Main';
 import Welcome from '../screen/Welcome';
 const Stack = createStackNavigator();
-const Navigition = () => {
+const MainNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -27,4 +27,4 @@ const Navigition = () => {
   );
 };
 
-export default Navigition;
+export default MainNavigation;
