@@ -1,8 +1,8 @@
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import React from 'react';
-import DoAn from './DoAn';
-import PhoBien from './PhoBien';
-import ThucAn from './ThucAn';
+import DoAn from './tab_navigation/DoAn';
+import PhoBien from './tab_navigation/PhoBien';
+import ThucUong from './tab_navigation/ThucUong';
 const Tab = createMaterialTopTabNavigator();
 const MainDatHang = () => {
   return (
@@ -18,18 +18,18 @@ const MainDatHang = () => {
       <Tab.Screen
         options={{tabBarLabel: 'Phổ Biến'}}
         name="PhoBien"
-        // component={DoAn}
-        children={() => <PhoBien propName={0} />}
+        component={PhoBien}
+      />
+
+      <Tab.Screen
+        name="ThucUong"
+        component={ThucUong}
+        options={{tabBarLabel: 'Thức uống'}}
       />
       <Tab.Screen
         name="DoAn"
         component={DoAn}
         options={{tabBarLabel: 'Đồ ăn'}}
-      />
-      <Tab.Screen
-        name="ThucAn"
-        component={ThucAn}
-        options={{tabBarLabel: 'Thức ăn'}}
       />
     </Tab.Navigator>
   );
