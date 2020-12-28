@@ -5,12 +5,14 @@
  * @format
  * @flow strict-local
  */
-import React from 'react';
 import 'react-native-gesture-handler';
-import Navigation from './src/navigitor_container/Navigition';
+import React from 'react';
+import {View, Text} from 'react-native';
+import 'react-native-gesture-handler';
+import MainNavigation from './src/navigitor_container/MainNavigation';
 
 const App = () => {
-  return <Navigation />;
+  return <MainNavigation />;
 };
 
 export default App;
