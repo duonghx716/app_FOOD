@@ -25,6 +25,7 @@ const Item = ({item}) => {
         <Text
           numberOfLines={2}
           style={{
+            height: 50,
             fontSize: 16,
             paddingVertical: 10,
             paddingHorizontal: 10,

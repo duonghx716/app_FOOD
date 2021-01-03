@@ -13,7 +13,6 @@ import {
 import Item from '../Item';
 const {width, height} = Dimensions.get('screen');
 const PhoBien = ({navigation}) => {
-  const [visible, setVisible] = useState(false);
   const DATA = [
     {
       id: 1,
@@ -86,56 +85,9 @@ const PhoBien = ({navigation}) => {
       gia: 3168,
     },
   ];
-  const modal = (
-    <Modal transparent={true} animationType="slide" visible={visible}>
-      <TouchableOpacity
-        onPress={() => setVisible(false)}
-        style={styles.containerModal}>
-        <View style={styles.childContainerModal}>
-          <Text style={{marginBottom: 20}}>
-            Vui lòng chọn hình thức giao hàng
-          </Text>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <TouchableOpacity
-              onPress={() => setVisible(false)}
-              style={styles.touchableOpacity}>
-              <Image
-                resizeMode="contain"
-                source={require('../../../assets/moto_logo.png')}
-                style={styles.images}
-              />
-              <Text>Giao tận nơi</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setVisible(false)}
-              style={styles.touchableOpacity}>
-              <Image
-                resizeMode="contain"
-                source={require('../../../assets/moto_logo.png')}
-                style={{width: 70, height: 70, borderRadius: 35}}
-              />
-              <Text>Tự đến lấy</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </TouchableOpacity>
-    </Modal>
-  );
-
-  React.useEffect(
-    () =>
-      navigation.addListener('focus', () =>
-        setTimeout(() => {
-          setVisible(true);
-        }, 200),
-      ),
-    [],
-  );
 
   return (
     <SafeAreaView style={styles.container}>
-      {modal}
-
       <Text style={{marginLeft: 15, marginTop: 15}}>Món được yêu thích</Text>
       <View style={{flex: 1}}>
         <FlatList

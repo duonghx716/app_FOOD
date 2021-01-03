@@ -76,54 +76,57 @@ const DoAn = () => {
     },
   ];
   return (
-    <ScrollView style={styles.container}>
-      <Text style={{marginLeft: 15, marginVertical: 15}}> Thức ăn nhẹ</Text>
-      <View style={{flex: 1}}>
-        <FlatList
-          data={DATA}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <Item item={item} />}
-          //Setting the number of column
-          numColumns={2}
-        />
-      </View>
-      <Text style={{marginLeft: 15, marginVertical: 15}}>
-        Thức uống đá xay{' '}
-      </Text>
-      <View style={{flex: 1}}>
-        <FlatList
-          data={DATA}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <Item item={item} />}
-          //Setting the number of column
-          numColumns={2}
-        />
-      </View>
-      <Text style={{marginLeft: 15, marginVertical: 15}}>Bánh Ngọt </Text>
-      <View style={{flex: 1}}>
-        <FlatList
-          data={DATA}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <Item item={item} />}
-          //Setting the number of column
-          numColumns={2}
-        />
-      </View>
-      <Text style={{marginLeft: 15, marginVertical: 15}}>Bánh mặn</Text>
-      <View style={{flex: 1}}>
-        <FlatList
-          data={DATA}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <Item item={item} />}
-          //Setting the number of column
-          numColumns={2}
-        />
-      </View>
-    </ScrollView>
+    // <ScrollView style={styles.container}>
+    //   <Text style={{marginLeft: 15, marginVertical: 15}}> Thức ăn nhẹ</Text>
+    //   <View style={{flex: 1}}>
+    //     <FlatList
+    //       data={DATA}
+    //       showsHorizontalScrollIndicator={false}
+    //       keyExtractor={(item) => item.id.toString()}
+    //       renderItem={({item}) => <Item item={item} />}
+    //       //Setting the number of column
+    //       numColumns={2}
+    //     />
+    //   </View>
+    //   <Text style={{marginLeft: 15, marginVertical: 15}}>
+    //     Thức uống đá xay{' '}
+    //   </Text>
+    //   <View style={{flex: 1}}>
+    //     <FlatList
+    //       data={DATA}
+    //       showsHorizontalScrollIndicator={false}
+    //       keyExtractor={(item) => item.id.toString()}
+    //       renderItem={({item}) => <Item item={item} />}
+    //       //Setting the number of column
+    //       numColumns={2}
+    //     />
+    //   </View>
+    //   <Text style={{marginLeft: 15, marginVertical: 15}}>Bánh Ngọt </Text>
+    //   <View style={{flex: 1}}>
+    //     <FlatList
+    //       data={DATA}
+    //       showsHorizontalScrollIndicator={false}
+    //       keyExtractor={(item) => item.id.toString()}
+    //       renderItem={({item}) => <Item item={item} />}
+    //       //Setting the number of column
+    //       numColumns={2}
+    //     />
+    //   </View>
+    //   <Text style={{marginLeft: 15, marginVertical: 15}}>Bánh mặn</Text>
+    //   <View style={{flex: 1}}>
+    //     <FlatList
+    //       data={DATA}
+    //       showsHorizontalScrollIndicator={false}
+    //       keyExtractor={(item) => item.id.toString()}
+    //       renderItem={({item}) => <Item item={item} />}
+    //       //Setting the number of column
+    //       numColumns={2}
+    //     />
+    //   </View>
+    // </ScrollView>
+    <View>
+      <Text>ádasd</Text>
+    </View>
   );
 };
 
