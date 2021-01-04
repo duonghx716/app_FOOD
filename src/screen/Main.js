@@ -12,6 +12,7 @@ const Main = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
+        showLabel: true,
         labelStyle: {
           fontSize: 11,
           justifyContent: 'center',
@@ -24,6 +25,7 @@ const Main = () => {
         name="TinTuc"
         component={MainTinTuc}
         options={{
+          tabBarAccessibilityLabel: 'cuahang',
           tabBarLabel: 'Tin Tức',
           tabBarIcon: ({color}) => (
             <FontAwesome name="align-justify" size={20} color={color} />

@@ -9,8 +9,11 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ScrollView,
 } from 'react-native';
 import Item from '../Item';
+import ListVertical from '../component/ListVertical';
+
 const {width, height} = Dimensions.get('screen');
 const PhoBien = ({navigation}) => {
   const DATA = [
@@ -87,48 +90,18 @@ const PhoBien = ({navigation}) => {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={{marginLeft: 15, marginTop: 15}}>Món được yêu thích</Text>
-      <View style={{flex: 1}}>
-        <FlatList
-          data={DATA}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <Item item={item} />}
-          //Setting the number of column
-          numColumns={2}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <ListVertical title={'Món được yêu thích'} DATA={DATA} />
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
   },
-  containerModal: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  childContainerModal: {
-    backgroundColor: '#fff',
-    width: width - 40,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-  },
-  touchableOpacity: {
-    width: 150,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  images: {width: 70, height: 70, borderRadius: 35},
 });
 
 export default PhoBien;

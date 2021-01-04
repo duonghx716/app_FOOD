@@ -1,17 +1,12 @@
 // Example of Animated Splash Screen in React Native
 // https://aboutreact.com/animated-splash-screen/
 
-// import React in our code
 import React, {useEffect} from 'react';
-// import all the components we are going to use
 import {Image, StyleSheet, View} from 'react-native';
 
 const Welcome = ({navigation}) => {
-  // const [alignsecond, setAlignsecond] = useState(true);
-
   useEffect(() => {
     setTimeout(() => {
-      // setAlignsecond(false);
       navigation.navigate('Main');
     }, 3000);
   }, []);
@@ -19,16 +14,12 @@ const Welcome = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image
-        style={{resizeMode: 'center'}}
-        source={require('../assets/The_Coffee_House_Logo.png')}
+        style={{resizeMode: 'cover'}}
+        source={require('../assets/wellcome.jpg')}
       />
-      {/* {alignsecond ? null : navigation.navigate('Main')} */}
     </View>
   );
 };
-
-export default Welcome;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -38,3 +29,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'yellow',
   },
 });
+export default Welcome;
