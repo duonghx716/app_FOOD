@@ -57,15 +57,26 @@ const MainCuaHang = () => {
 
   return curentPosition.latitude ? (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Text
+          style={{
+            backgroundColor: '#ffff',
+            width: '100%',
+            paddingVertical: 15,
+            textAlign: 'center',
+            fontWeight: '600',
+          }}>
+          Store
+        </Text>
+      </View>
       <MapView
         showsUserLocation
-        showsMyLocationButton={true}
-        showsUserLocation
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-        style={styles.map}
+        style={styles.container}
         region={curentPosition}>
         {markers.map((item) => (
           <Marker
+            key={item.id}
             coordinate={item.coordinates}
             title={item.title}
             description={item.title}>
@@ -80,17 +91,8 @@ const MainCuaHang = () => {
           </Marker>
         ))}
       </MapView>
-      <Text
-        style={{
-          backgroundColor: '#ffff',
-          width: '100%',
-          paddingVertical: 15,
-          textAlign: 'center',
-          fontWeight: '600',
-        }}>
-        Store
-      </Text>
-      <Picker
+
+      {/* <Picker
         selectedValue={selectedValue}
         style={{
           height: 50,
@@ -101,7 +103,7 @@ const MainCuaHang = () => {
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
         <Picker.Item label="Java" value="java" />
         <Picker.Item label="JavaScript" value="js" />
-      </Picker>
+      </Picker> */}
     </View>
   ) : (
     <ActivityIndicator style={{flex: 1}} animating size="large" />
@@ -109,17 +111,18 @@ const MainCuaHang = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
-    height: '100%',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flex: 1,
   },
   header: {
     position: 'relative',
     backgroundColor: 'red',
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
   },
 });
 export default MainCuaHang;

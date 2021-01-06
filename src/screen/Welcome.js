@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: 'yellow',
   },
 });
 export default Welcome;
