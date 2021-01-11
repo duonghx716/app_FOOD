@@ -1,56 +1,23 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import {styles} from './styles';
 const Item = ({item}) => {
   return (
-    <TouchableOpacity
-      style={{
-        flex: 0.5,
-        margin: 10,
-        backgroundColor: '#ffff',
-        borderRadius: 7,
-        overflow: 'hidden',
-        borderWidth: 0.5,
-        borderColor: 'gray',
-      }}>
+    <TouchableOpacity style={styles.touchableOpacity_item}>
       <Image
         source={{
           uri: item.image,
         }}
         resizeMode="stretch"
-        style={{width: 220, height: 120}}
+        style={styles.image_item}
       />
       <View>
-        <Text
-          numberOfLines={2}
-          style={{
-            height: 50,
-            fontSize: 16,
-            paddingVertical: 10,
-            paddingHorizontal: 10,
-            lineHeight: 25,
-            fontWeight: '800',
-          }}>
+        <Text numberOfLines={2} style={styles.text_name_item}>
           {item.name}
         </Text>
-
-        <View
-          style={{
-            flex: 1,
-            borderTopColor: 'gray',
-            borderTopWidth: 0.5,
-            flexDirection: 'row',
-            paddingVertical: 15,
-            paddingHorizontal: 10,
-          }}>
-          <Text
-            style={{
-              flex: 1,
-              fontSize: 16,
-            }}>
-            {item.gia}
-          </Text>
+        <View style={styles.view_In_touchableOpacity}>
+          <Text style={styles.text_gia_item}>{item.gia}</Text>
           <MaterialIcons name="loupe" size={20} color="#ea8027" />
         </View>
       </View>

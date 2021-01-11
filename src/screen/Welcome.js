@@ -14,7 +14,7 @@ const Welcome = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image
-        style={{resizeMode: 'cover'}}
+        style={{resizeMode: 'cover', width: '100%', height: '100%'}}
         source={require('../assets/wellcome.jpg')}
       />
     </View>

@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, SafeAreaView} from 'react-native';
 import Item from '../Item';
+import {styles} from '../styles';
 
 const ListVertical = React.memo((props) => {
   return (
     <View>
-      <Text style={{marginLeft: 15, marginVertical: 15}}>{props.title}</Text>
-      <View style={{flex: 1}}>
+      <Text style={styles.text_title_listVertical}>{props.title}</Text>
+      <View style={styles.flex}>
         <FlatList
           data={props.DATA}
           showsHorizontalScrollIndicator={false}

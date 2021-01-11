@@ -35,11 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffff',
     flexDirection: 'row',
   },
-  uu_Dai_Dac_Biet: {
-    flexDirection: 'column',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-  },
+  uu_Dai_Dac_Biet: {},
   text_item: {textAlign: 'center', color: '#ffb042'},
   text_content: {
     width: 220,

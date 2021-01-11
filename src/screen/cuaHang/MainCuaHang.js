@@ -1,23 +1,19 @@
+import Geolocation from '@react-native-community/geolocation';
+import {Picker} from '@react-native-picker/picker';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
-  Image,
-  StyleSheet,
-  Animated,
-  View,
-  Text,
-  Dimensions,
   Alert,
+  Animated,
+  Dimensions,
+  Image,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import Geolocation from '@react-native-community/geolocation';
-const {width, height} = Dimensions.get('screen');
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import {styles} from './styles';
 
-const CREAD_HEIGHT = height * 0.24;
-const CREAD_WIDTH = width * 0.4;
-const SAPSING_FOR_CARD_INSET = width * 0.1 - 10;
 const MainCuaHang = () => {
   const initialState = {
     latitude: null,
@@ -116,14 +112,7 @@ const MainCuaHang = () => {
   return curentPosition.latitude ? (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text
-          style={{
-            width: '100%',
-            fontWeight: '600',
-            textAlign: 'center',
-          }}>
-          Store
-        </Text>
+        <Text style={styles.text_header}>Store</Text>
       </View>
       <MapView
         showsUserLocation
@@ -138,26 +127,12 @@ const MainCuaHang = () => {
             description={item.title}>
             <Image
               source={require('../../assets/logoTCH.jpg')}
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 10,
-              }}
+              style={styles.image_Marker}
             />
           </Marker>
         ))}
       </MapView>
-      <View
-        style={{
-          height: 50,
-          width: width * 0.96,
-          borderRadius: 10,
-          backgroundColor: '#fff',
-          position: 'absolute',
-          top: 50,
-          justifyContent: 'center',
-          margin: width * 0.02,
-        }}>
+      <View style={styles.view_picker}>
         <Picker
           mode={'dropdown'}
           selectedValue={selectedValue}
@@ -174,45 +149,21 @@ const MainCuaHang = () => {
         horizontal
         scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
-        style={{
-          position: 'absolute',
-          padding: width * 0.02,
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}>
+        style={styles.scrollview}>
         {markers.map((marker, index) => (
           <TouchableOpacity
             key={index}
-            style={{
-              elevation: 2,
-              backgroundColor: '#fff',
-              borderRadius: 7,
-              marginHorizontal: 7,
-              shadowColor: '#000000',
-              shadowOpacity: 0.3,
-              shadowOffset: {x: 2, y: -2},
-              height: CREAD_HEIGHT,
-              width: CREAD_WIDTH,
-              overflow: 'hidden',
-            }}>
+            style={styles.touchableOpacity_In_Scrollview}>
             <Image
               source={{uri: marker.image}}
               resizeMode="cover"
-              style={{
-                flex: 3,
-                alignSelf: 'center',
-                width: '100%',
-                height: '100%',
-              }}
+              style={styles.image_In_TouchableOpacity}
             />
             <View style={{flex: 1, padding: 10}}>
-              <Text
-                numberOfLines={1}
-                style={{fontSize: 12, fontWeight: 'bold'}}>
+              <Text numberOfLines={1} style={styles.text_Title}>
                 {marker.title}
               </Text>
-              <Text numberOfLines={1} style={{fontSize: 12, color: '#444'}}>
+              <Text numberOfLines={1} style={styles.text_Description}>
                 {marker.description}
               </Text>
             </View>
@@ -224,12 +175,5 @@ const MainCuaHang = () => {
     <ActivityIndicator style={{flex: 1}} animating size="large" />
   );
 };
-const styles = StyleSheet.create({
-  container: {flex: 1},
-  header: {
-    justifyContent: 'center',
-    paddingVertical: 15,
-    backgroundColor: '#fff',
-  },
-});
+
 export default MainCuaHang;
