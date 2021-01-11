@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-
+import {StyleSheet, Dimensions} from 'react-native';
+const {width, height} = Dimensions.get('screen');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -7,19 +7,21 @@ const styles = StyleSheet.create({
   imageProfile: {
     width: 40,
     height: 40,
-    borderRadius: 40,
+    borderRadius: 20,
   },
   header_container: {
+    height: 60,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#ffffff',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
   },
   profile_header: {
     flex: 1,
+    width: width * 0.9,
+    height: '100%',
     flexDirection: 'row',
-    marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
   },
   logo_point: {
     width: 15,
@@ -29,10 +31,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   view_lua_chon: {
+    flex: 1,
     backgroundColor: '#ffff',
     flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
   },
   uu_Dai_Dac_Biet: {
     flexDirection: 'column',

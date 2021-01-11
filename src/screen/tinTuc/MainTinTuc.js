@@ -1,9 +1,11 @@
 import React from 'react';
-import {FlatList, Image, StatusBar, Text, View} from 'react-native';
+import {FlatList, Image, StatusBar, Text, View, Dimensions} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
-const MainTinTuc = () => {
+const {width, height} = Dimensions.get('screen');
+
+const MainTinTuc = ({navigation}) => {
   const profile_source = require('../../assets/profile.jpg');
   const logo_point = require('../../assets/logo_point.png');
   const tichDiem = require('../../assets/tichDiem.png');
@@ -106,11 +108,15 @@ const MainTinTuc = () => {
     },
   ];
   const Lua_chon = ({image, title}) => (
-    <TouchableOpacity style={{flex: 1, marginHorizontal: 20}}>
+    <TouchableOpacity
+      style={{
+        flex: 1,
+        paddingVertical: 10,
+      }}>
       <Image
         source={image}
         resizeMode="contain"
-        style={{width: 60, height: 60}}
+        style={{width: width * 0.25, height: height * 0.05}}
       />
       <Text style={{textAlign: 'center', fontSize: 11}}>{title}</Text>
     </TouchableOpacity>
@@ -143,7 +149,7 @@ const MainTinTuc = () => {
     <View style={styles.container}>
       <StatusBar backgroundColor="#EEEEEE" barStyle="dark-content" />
       <View style={styles.header_container}>
-        <View style={styles.profile_header}>
+        <TouchableOpacity style={styles.profile_header}>
           <Image source={profile_source} style={styles.imageProfile} />
           <View style={{marginLeft: 7}}>
             <Text numberOfLines={1} style={styles.text_frontWeight_bold}>
@@ -155,10 +161,10 @@ const MainTinTuc = () => {
               <Image source={logo_point} style={styles.logo_point}></Image>
             </View>
           </View>
-        </View>
-        <View>
+        </TouchableOpacity>
+        <TouchableOpacity>
           <MaterialIcons name="notifications" size={25} color="gray" />
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={{height: 10}} />
       <ScrollView>

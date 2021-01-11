@@ -49,9 +49,7 @@ const MainTaiKhoan = () => {
         activeOpacity={0.6}
         underlayColor="#DDDDDD"
         style={{marginLeft: 15, marginTop: 15}}>
-        <Text style={{fontSize: 15, color: 'gray', fontWeight: '400'}}>
-          Đăng xuất
-        </Text>
+        <Text style={styles.text_dangxuat}>Đăng xuất</Text>
       </TouchableHighlight>
     </View>
   );
@@ -94,5 +92,6 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     alignItems: 'center',
   },
+  text_dangxuat: {fontSize: 15, color: 'gray', fontWeight: '400'},
 });
 export default MainTaiKhoan;
