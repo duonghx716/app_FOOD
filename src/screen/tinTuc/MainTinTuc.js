@@ -1,9 +1,19 @@
-import React from 'react';
-import {Dimensions, Image, StatusBar, Text, View} from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import React, {useState} from 'react';
+import {
+  Dimensions,
+  Image,
+  StatusBar,
+  Text,
+  View,
+  Modal,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import List from './component/List';
-import {DATA} from './data/Data.js';
+import {DATA, DATA_notification} from './data/Data.js';
 import styles from './styles';
 const {width, height} = Dimensions.get('screen');
 const MainTinTuc = ({navigation}) => {
@@ -15,7 +25,193 @@ const MainTinTuc = ({navigation}) => {
   const Rewards = require('../../assets/Rewards.png');
   const user_name = 'Dương Hà';
   const point = 0;
-
+  const [
+    modal_Notifications_Visible,
+    set_Modal_Notifications_Visible,
+  ] = useState(false);
+  const [modal_profile_Visible, set_Modal_profile_Visible] = useState(false);
+  const Item_Notification = ({item}) => (
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'row',
+        paddingHorizontal: 15,
+        paddingTop: 10,
+        backgroundColor: '#ffff',
+      }}>
+      <Image
+        source={{uri: item.image}}
+        style={{width: 100, height: 100}}
+        resizeMode={'cover'}
+      />
+      <View style={{alignItems: 'flex-start', marginLeft: 10}}>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: 16,
+          }}>
+          {item.title}
+        </Text>
+        <Text
+          style={{
+            width: width * 0.71,
+            lineHeight: 25,
+          }}
+          numberOfLines={2}>
+          {item.description}
+        </Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{marginRight: 10}}>{item.date}</Text>
+          <Text>{item.time}</Text>
+        </View>
+      </View>
+    </View>
+  );
+  const Item_Profile = ({title, value}) => {
+    return (
+      <View
+        style={{
+          flexDirection: 'column',
+          padding: 15,
+          borderBottomColor: '#EEEEEE',
+          borderBottomWidth: 1,
+        }}>
+        <Text style={{color: 'gray', fontSize: 15}}>{title}</Text>
+        <Text style={{color: 'black', fontSize: 15}}>{value}</Text>
+      </View>
+    );
+  };
+  const modal_profile = (
+    <Modal
+      visible={modal_profile_Visible}
+      animationType={'slide'}
+      transparent={true}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <View style={{flex: 1, flexDirection: 'row', padding: 15}}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                alert('thay doi avatar profile');
+              }}>
+              <Image
+                source={require('../../assets/profile.jpg')}
+                style={{width: 120, height: 120, borderRadius: 60}}
+                resizeMode={'contain'}
+              />
+            </TouchableOpacity>
+            <Text style={{fontSize: 20}}>Dương Hà</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontSize: 20}}>29</Text>
+              <Image source={logo_point} style={{width: 30, height: 30}} />
+              <Text style={{fontSize: 20}}> | Khách hàng mới</Text>
+            </View>
+          </View>
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'gray',
+              height: 30,
+              borderRadius: 15,
+            }}
+            onPress={() => {
+              set_Modal_profile_Visible(false);
+            }}>
+            <MaterialIcons name="close" size={30} color="black" />
+          </TouchableOpacity>
+        </View>
+        <View style={{flex: 2, flexDirection: 'column'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              backgroundColor: '#EEEEEE',
+              justifyContent: 'center',
+              padding: 15,
+            }}>
+            <Text style={{justifyContent: 'flex-start', flex: 1, fontSize: 18}}>
+              Thông Tin cá nhân
+            </Text>
+            <TouchableOpacity
+              style={{}}
+              onPress={() => {
+                alert('doi thong tin');
+              }}>
+              <Text style={{color: 'blue', fontSize: 18}}>Đổi</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{flexDirection: 'column'}}>
+            <Item_Profile title="Tên" value="Dương Hà" />
+            <Item_Profile title="Sinh nhật" value="12/02/1996" />
+            <Item_Profile title="Số Điện Thoại" value="0967884135" />
+            <Item_Profile title="Giới Tính" value="Nam" />
+          </View>
+        </View>
+      </View>
+    </Modal>
+  );
+  const modal_notifications = (
+    <Modal
+      visible={modal_Notifications_Visible}
+      transparent={true}
+      animationType={'slide'}>
+      <View style={{flex: 1}}>
+        <View
+          style={{
+            backgroundColor: '#fff',
+            padding: 15,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity
+            style={{flex: 1}}
+            onPress={() => {
+              set_Modal_Notifications_Visible(false);
+            }}>
+            <MaterialIcons name="close" size={30} color="gray" />
+          </TouchableOpacity>
+          <Text
+            style={{
+              flex: 8,
+              fontSize: 25,
+              fontWeight: '800',
+              textAlign: 'center',
+            }}>
+            Thông Báo
+          </Text>
+          <TouchableOpacity
+            style={{flex: 1, alignItems: 'flex-end'}}
+            onPress={() => {
+              alert('Bạn có chắc chắn đánh dấu đã xem tất cả các thông báo?');
+            }}>
+            <MaterialIcons name="grading" size={30} color="gray" />
+          </TouchableOpacity>
+        </View>
+        <View style={{backgroundColor: '#EEEEEE', width: width, height: 10}} />
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            height: '100%',
+          }}>
+          <FlatList
+            data={DATA_notification}
+            horizontal={false}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({item}) => <Item_Notification item={item} />}
+          />
+        </View>
+      </View>
+    </Modal>
+  );
   const Lua_chon = ({image, title}) => (
     <TouchableOpacity
       style={{
@@ -34,7 +230,11 @@ const MainTinTuc = ({navigation}) => {
     <View style={styles.container}>
       <StatusBar backgroundColor="#EEEEEE" barStyle="dark-content" />
       <View style={styles.header_container}>
-        <TouchableOpacity style={styles.profile_header}>
+        <TouchableOpacity
+          style={styles.profile_header}
+          onPress={() => {
+            set_Modal_profile_Visible(true);
+          }}>
           <Image source={profile_source} style={styles.imageProfile} />
           <View style={{marginLeft: 7}}>
             <Text numberOfLines={1} style={styles.text_frontWeight_bold}>
@@ -47,7 +247,10 @@ const MainTinTuc = ({navigation}) => {
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            set_Modal_Notifications_Visible(true);
+          }}>
           <MaterialIcons name="notifications" size={25} color="gray" />
         </TouchableOpacity>
       </View>
@@ -67,6 +270,8 @@ const MainTinTuc = ({navigation}) => {
           <List DATA={DATA} title1={'#CoffeeLover'} />
         </View>
       </ScrollView>
+      {modal_notifications}
+      {modal_profile}
     </View>
   );
 };

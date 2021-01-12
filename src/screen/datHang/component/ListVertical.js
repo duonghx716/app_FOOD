@@ -5,15 +5,14 @@ import {styles} from '../styles';
 
 const ListVertical = React.memo((props) => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Text style={styles.text_title_listVertical}>{props.title}</Text>
-      <View style={styles.flex}>
+      <View>
         <FlatList
           data={props.DATA}
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => <Item item={item} />}
-          //Setting the number of column
           numColumns={2}
         />
       </View>

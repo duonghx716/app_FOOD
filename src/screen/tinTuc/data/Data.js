@@ -90,3 +90,91 @@ export let DATA = [
       'https://www.designbold.com/academy/wp-content/uploads/2018/09/10-trang-web-c%C3%B3-ngu%E1%BB%93n-h%C3%ACnh-%E1%BA%A3nh-mi%E1%BB%85n-ph%C3%AD-ch%E1%BA%A5t-l%C6%B0%E1%BB%A3ng-3.jpeg',
   },
 ];
+export const DATA_notification = [
+  {
+    id: 1,
+    title: 'Senior Financial Analyst',
+    description:
+      'Unspecified atherosclerosis of autologous vein bypass graft(s) of the extremities, unspecified extremity',
+    date: '6/18/2020',
+    time: '1:57 AM',
+    image: 'http://dummyimage.com/150x128.bmp/dddddd/000000',
+  },
+  {
+    id: 2,
+    title: 'Editor',
+    description:
+      'Salter-Harris Type IV physeal fracture of upper end of humerus, right arm, subsequent encounter for fracture with routine healing',
+    date: '8/12/2020',
+    time: '12:03 AM',
+    image: 'http://dummyimage.com/141x242.jpg/ff4444/ffffff',
+  },
+  {
+    id: 3,
+    title: 'Statistician III',
+    description:
+      'Unspecified open wound of left little finger with damage to nail, subsequent encounter',
+    date: '5/12/2020',
+    time: '12:36 AM',
+    image: 'http://dummyimage.com/164x120.bmp/cc0000/ffffff',
+  },
+  {
+    id: 4,
+    title: 'Administrative Assistant III',
+    description: 'Adverse effect of local anesthetics, subsequent encounter',
+    date: '4/20/2020',
+    time: '12:17 PM',
+    image: 'http://dummyimage.com/223x182.jpg/cc0000/ffffff',
+  },
+  {
+    id: 5,
+    title: 'Research Associate',
+    description: 'Burn of unspecified degree of right toe(s) (nail), sequela',
+    date: '11/30/2020',
+    time: '9:04 AM',
+    image: 'http://dummyimage.com/222x233.jpg/5fa2dd/ffffff',
+  },
+  {
+    id: 6,
+    title: 'Office Assistant II',
+    description:
+      'Other exposure to uncontrolled fire, not in building or structure, subsequent encounter',
+    date: '8/12/2020',
+    time: '3:41 PM',
+    image: 'http://dummyimage.com/192x202.bmp/dddddd/000000',
+  },
+  {
+    id: 7,
+    title: 'Physical Therapy Assistant',
+    description:
+      'Open bite of unspecified back wall of thorax without penetration into thoracic cavity, initial encounter',
+    date: '2/25/2020',
+    time: '1:34 PM',
+    image: 'http://dummyimage.com/203x196.png/dddddd/000000',
+  },
+  {
+    id: 8,
+    title: 'Office Assistant IV',
+    description: 'Corrosion of third degree of right scapular region, sequela',
+    date: '2/10/2020',
+    time: '12:10 PM',
+    image: 'http://dummyimage.com/210x166.jpg/5fa2dd/ffffff',
+  },
+  {
+    id: 9,
+    title: 'Payment Adjustment Coordinator',
+    description: 'Other juvenile osteochondrosis of hip and pelvis, left leg',
+    date: '1/30/2020',
+    time: '10:45 PM',
+    image: 'http://dummyimage.com/151x166.png/cc0000/ffffff',
+  },
+  {
+    id: 10,
+    title: 'Health Coach I',
+    description:
+      'Complete lesion at C2 level of cervical spinal cord, initial encounter',
+    date: '7/11/2020',
+    time: '7:11 AM',
+    image: 'http://dummyimage.com/243x129.png/ff4444/ffffff',
+  },
+];

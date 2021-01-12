@@ -14,14 +14,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#ffffff',
+    paddingRight: 10,
   },
   profile_header: {
     flex: 1,
     width: width * 0.9,
     height: '100%',
     flexDirection: 'row',
-    paddingHorizontal: 10,
     paddingVertical: 10,
+    paddingLeft: 10,
   },
   logo_point: {
     width: 15,
