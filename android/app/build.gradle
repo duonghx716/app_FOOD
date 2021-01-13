@@ -129,6 +129,7 @@ android {
     }
 
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.app_food"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

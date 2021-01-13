@@ -30,15 +30,16 @@ const MainTinTuc = ({navigation}) => {
     set_Modal_Notifications_Visible,
   ] = useState(false);
   const [modal_profile_Visible, set_Modal_profile_Visible] = useState(false);
+  const user = {
+    id: 1,
+    name: 'Dương Hà',
+    phoneNumber: '0967884135',
+    birthday: '12/02/1996',
+    gender: 'Nam',
+  };
+
   const Item_Notification = ({item}) => (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-        paddingHorizontal: 15,
-        paddingTop: 10,
-        backgroundColor: '#ffff',
-      }}>
+    <View style={styles.container_Item_Notification}>
       <Image
         source={{uri: item.image}}
         style={{width: 100, height: 100}}
@@ -86,42 +87,29 @@ const MainTinTuc = ({navigation}) => {
       visible={modal_profile_Visible}
       animationType={'slide'}
       transparent={true}>
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <View style={{flex: 1, flexDirection: 'row', padding: 15}}>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              right: 0,
-              bottom: 0,
-            }}>
+      <View style={[{...styles.container}, {backgroundColor: '#fff'}]}>
+        <View
+          style={[{...styles.container}, {flexDirection: 'row', padding: 15}]}>
+          <View style={styles.container_in_modal_profile}>
             <TouchableOpacity
               onPress={() => {
                 alert('thay doi avatar profile');
               }}>
               <Image
                 source={require('../../assets/profile.jpg')}
-                style={{width: 120, height: 120, borderRadius: 60}}
+                style={styles.image_in_modal_profile}
                 resizeMode={'contain'}
               />
             </TouchableOpacity>
-            <Text style={{fontSize: 20}}>Dương Hà</Text>
+            <Text style={styles.text_size}>Dương Hà</Text>
             <View style={{flexDirection: 'row'}}>
-              <Text style={{fontSize: 20}}>29</Text>
+              <Text style={styles.text_size}>29</Text>
               <Image source={logo_point} style={{width: 30, height: 30}} />
-              <Text style={{fontSize: 20}}> | Khách hàng mới</Text>
+              <Text style={styles.text_size}> | Khách hàng mới</Text>
             </View>
           </View>
           <TouchableOpacity
-            style={{
-              backgroundColor: 'gray',
-              height: 30,
-              borderRadius: 15,
-            }}
+            style={styles.TouchableOpacity_chang_profile}
             onPress={() => {
               set_Modal_profile_Visible(false);
             }}>
@@ -129,18 +117,9 @@ const MainTinTuc = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View style={{flex: 2, flexDirection: 'column'}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              backgroundColor: '#EEEEEE',
-              justifyContent: 'center',
-              padding: 15,
-            }}>
-            <Text style={{justifyContent: 'flex-start', flex: 1, fontSize: 18}}>
-              Thông Tin cá nhân
-            </Text>
+          <View style={styles.view_thongtin}>
+            <Text style={styles.text_in_viewThongtin}>Thông Tin cá nhân</Text>
             <TouchableOpacity
-              style={{}}
               onPress={() => {
                 alert('doi thong tin');
               }}>
@@ -148,10 +127,10 @@ const MainTinTuc = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={{flexDirection: 'column'}}>
-            <Item_Profile title="Tên" value="Dương Hà" />
-            <Item_Profile title="Sinh nhật" value="12/02/1996" />
-            <Item_Profile title="Số Điện Thoại" value="0967884135" />
-            <Item_Profile title="Giới Tính" value="Nam" />
+            <Item_Profile title="Tên" value={user.name} />
+            <Item_Profile title="Sinh nhật" value={user.birthday} />
+            <Item_Profile title="Số Điện Thoại" value={user.phoneNumber} />
+            <Item_Profile title="Giới Tính" value={user.gender} />
           </View>
         </View>
       </View>
@@ -162,46 +141,26 @@ const MainTinTuc = ({navigation}) => {
       visible={modal_Notifications_Visible}
       transparent={true}
       animationType={'slide'}>
-      <View style={{flex: 1}}>
-        <View
-          style={{
-            backgroundColor: '#fff',
-            padding: 15,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
+      <View style={styles.container}>
+        <View style={styles.container_modal_notification}>
           <TouchableOpacity
-            style={{flex: 1}}
+            style={styles.container}
             onPress={() => {
               set_Modal_Notifications_Visible(false);
             }}>
             <MaterialIcons name="close" size={30} color="gray" />
           </TouchableOpacity>
-          <Text
-            style={{
-              flex: 8,
-              fontSize: 25,
-              fontWeight: '800',
-              textAlign: 'center',
-            }}>
-            Thông Báo
-          </Text>
+          <Text style={styles.text_thongbao}>Thông Báo</Text>
           <TouchableOpacity
-            style={{flex: 1, alignItems: 'flex-end'}}
+            style={styles.container}
             onPress={() => {
               alert('Bạn có chắc chắn đánh dấu đã xem tất cả các thông báo?');
             }}>
             <MaterialIcons name="grading" size={30} color="gray" />
           </TouchableOpacity>
         </View>
-        <View style={{backgroundColor: '#EEEEEE', width: width, height: 10}} />
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-            height: '100%',
-          }}>
+        <View style={styles.view_margin} />
+        <View style={styles.view_FlatList}>
           <FlatList
             data={DATA_notification}
             horizontal={false}

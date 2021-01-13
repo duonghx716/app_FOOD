@@ -70,5 +70,58 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     overflow: 'hidden',
   },
+  // Item_Notification
+  container_Item_Notification: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    backgroundColor: '#ffff',
+  },
+  // modal_notifications
+  container_modal_notification: {
+    backgroundColor: '#fff',
+    padding: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  text_thongbao: {
+    flex: 8,
+    fontSize: 25,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  view_margin: {backgroundColor: '#EEEEEE', width: width, height: 10},
+  viewFlatList: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  // modal_profile
+  container_in_modal_profile: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+  },
+  image_in_modal_profile: {width: 120, height: 120, borderRadius: 60},
+  text_size: {fontSize: 20},
+  TouchableOpacity_chang_profile: {
+    backgroundColor: 'gray',
+    height: 30,
+    borderRadius: 15,
+  },
+  view_thongtin: {
+    flexDirection: 'row',
+    backgroundColor: '#EEEEEE',
+    justifyContent: 'center',
+    padding: 15,
+  },
+  text_in_viewThongtin: {justifyContent: 'flex-start', flex: 1, fontSize: 18},
 });
 export default styles;
