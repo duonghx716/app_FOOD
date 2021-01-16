@@ -1,5 +1,6 @@
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import React, {useEffect, useState} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import React, {useCallback, useState} from 'react';
 import {Image, Modal, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import DoAn from './tab_navigation/DoAn';
@@ -10,15 +11,14 @@ const Tab = createMaterialTopTabNavigator();
 const MainDatHang = ({navigation}) => {
   const [visible, setVisible] = useState(false);
 
-  useEffect(
-    () =>
-      navigation.addListener('focus', () =>
-        setTimeout(() => {
-          setVisible(true);
-        }, 200),
-      ),
-    [],
+  useFocusEffect(
+    useCallback(() => {
+      setTimeout(() => {
+        setVisible(true);
+      }, 200);
+    }, []),
   );
+
   const modal = (
     <Modal transparent={true} animationType="slide" visible={visible}>
       <TouchableOpacity
