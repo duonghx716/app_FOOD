@@ -1,19 +1,22 @@
-import React, {useState} from 'react';
-import {Image, Modal, Text, TouchableOpacity, View} from 'react-native';
+import React, { useState } from 'react';
+import { Image, Modal, Text, TouchableOpacity, View } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {logo_point, profile_source} from '../../../../assets';
-import styles from './styles';
-import ProfileItem from './ProfileItem';
+import { logo_point } from '../../../../assets';
 import ChangeAvatarModal from '../ChangeAvataModal';
+import ProfileItem from './ProfileItem';
+import styles from './styles';
 
-const user = {
+export const user = {
   id: 1,
   name: 'Dương Hà',
   phoneNumber: '0967884135',
   birthday: '12/02/1996',
   gender: 'Nam',
+  avatar: 'https://reactnative.dev/img/tiny_logo.png',
 };
 const ProfileModal = ({isVisible, onHideModal}) => {
+  const [isAvatarLink, setIsAvatarLink] = useState(null);
+  
   const [isVisibleChangeAvatarModal, setIsVisibleChangeAvatarModal] = useState(
     false,
   );
@@ -24,16 +27,18 @@ const ProfileModal = ({isVisible, onHideModal}) => {
           style={[{...styles.container}, {flexDirection: 'row', padding: 15}]}>
           <View style={styles.container_in_modal_profile}>
             <TouchableOpacity
-              onPress={() => setIsVisibleChangeAvatarModal(true)}>
+              onPress={() => {
+                setIsVisibleChangeAvatarModal(true);
+              }}>
               <Image
-                source={profile_source}
+                source={{uri: isAvatarLink || user.avatar}}
                 style={styles.image_in_modal_profile}
-                resizeMode={'contain'}
+                resizeMode={'cover'}
               />
             </TouchableOpacity>
             <Text style={styles.text_size}>Dương Hà</Text>
             <View style={{flexDirection: 'row'}}>
-              <Text style={styles.text_size}>29</Text>zlll
+              <Text style={styles.text_size}>29</Text>
               <Image source={logo_point} style={{width: 30, height: 30}} />
               <Text style={styles.text_size}> | Khách hàng mới</Text>
             </View>
@@ -63,10 +68,11 @@ const ProfileModal = ({isVisible, onHideModal}) => {
         </View>
       </View>
       <ChangeAvatarModal
-        isVisitable1={isVisibleChangeAvatarModal}
-        onHideModal1={() => {
+        isVisitableChange={isVisibleChangeAvatarModal}
+        onHideModalChange={() => {
           setIsVisibleChangeAvatarModal(false);
         }}
+        onChangeAvatar={setIsAvatarLink}
       />
     </Modal>
   );
