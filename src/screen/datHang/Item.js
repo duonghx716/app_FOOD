@@ -25,4 +25,4 @@ const Item = ({item}) => {
   );
 };
 
-export default Item;
+export default React.memo(Item);

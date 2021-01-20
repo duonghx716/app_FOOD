@@ -7,12 +7,16 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-import {View, Text} from 'react-native';
 import 'react-native-gesture-handler';
-import MainNavigation from './src/navigitor_container/MainNavigation';
+import {AuthProvider} from './src/navigator/AuthProvider';
+import RootNavigator from './src/navigator/RootNavigator';
 
 const App = () => {
-  return <MainNavigation />;
+  return (
+    <AuthProvider>
+      <RootNavigator />
+    </AuthProvider>
+  );
 };
 
 export default App;

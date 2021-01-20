@@ -1,7 +1,7 @@
-import React from 'react';
-import {Image, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import React, {useContext} from 'react';
+import {Image, Text, View, TouchableOpacity} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {AuthContext} from '../../navigator/AuthProvider';
 import {styles} from './styles';
 const user_name = 'Dương Hà';
 const point = 0;
@@ -14,6 +14,7 @@ const Selector = ({icon, title}) => (
   </TouchableOpacity>
 );
 const MainTaiKhoan = () => {
+  const {logout} = useContext(AuthContext);
   return (
     <View>
       <TouchableOpacity style={styles.header_container}>
@@ -43,7 +44,8 @@ const MainTaiKhoan = () => {
       <TouchableOpacity
         activeOpacity={0.6}
         underlayColor="#DDDDDD"
-        style={styles.TouchableOpacity}>
+        style={styles.TouchableOpacity}
+        onPress={() => logout()}>
         <Text style={styles.text_dangxuat}>Đăng xuất</Text>
       </TouchableOpacity>
     </View>

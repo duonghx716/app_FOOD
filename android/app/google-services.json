@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "131868955795",
+    "project_id": "clonethecoffeehouse-46cbf",
+    "storage_bucket": "clonethecoffeehouse-46cbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131868955795:android:e08bd98f25cb1b9972e966",
+        "android_client_info": {
+          "package_name": "com.app_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131868955795-hhhr84kloh6p52alugk99nkih5cgn6t2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app_food",
+            "certificate_hash": "b71ad25bc2d985ce06b025693006f6f786d41d04"
+          }
+        },
+        {
+          "client_id": "131868955795-ikdt1cd3i0pse94ckgehnamssvhbsar3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG54b79ETeBr8dDHjqxhnE4Y7OWnmOYhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131868955795-ikdt1cd3i0pse94ckgehnamssvhbsar3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
