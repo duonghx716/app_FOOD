@@ -13,6 +13,7 @@ import {
 import styles from '../login/styles';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 const Registration = ({navigation}) => {
   const Click = () => {
@@ -24,6 +25,18 @@ const Registration = ({navigation}) => {
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
+        const userAuth = auth().currentUser;
+        database().ref(`/users/${userAuth.uid}`).set({
+          email: userAuth.email,
+          uid: userAuth.uid,
+          name: '',
+          createdAuth: new Date().toISOString(),
+          avatar: '',
+          gender: '',
+          numberPhone: '',
+          birthDay: '',
+        });
+
         navigation.navigate('Main');
         ToastAndroid.show('Đăng ký thành công', ToastAndroid.LONG);
         console.log('User account created & signed in!');

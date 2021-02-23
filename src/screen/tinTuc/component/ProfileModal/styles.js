@@ -48,4 +48,20 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  view_item: {
+    flexDirection: 'column',
+    padding: 15,
+    // borderBottomColor: '#EEEEEE',
+    // borderBottomWidth: 1,
+  },
+  text_view_item: {color: 'gray', fontSize: 15},
+  textInput_view_item: {
+    color: 'black',
+    borderColor: '#EEEEEE',
+    borderWidth: 1,
+    backgroundColor: '#EEEEEE',
+    borderRadius: 5,
+    fontSize: 15,
+    padding: 10,
+  },
 });

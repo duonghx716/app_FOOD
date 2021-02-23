@@ -1,4 +1,5 @@
 import React from 'react';
+import {TextInput} from 'react-native';
 import {View, Text} from 'react-native';
 
 const ProfileItem = ({title, value}) => {
@@ -11,7 +12,7 @@ const ProfileItem = ({title, value}) => {
         borderBottomWidth: 1,
       }}>
       <Text style={{color: 'gray', fontSize: 15}}>{title}</Text>
-      <Text style={{color: 'black', fontSize: 15}}>{value}</Text>
+      <TextInput style={{color: 'black', fontSize: 15}}>{value}</TextInput>
     </View>
   );
 };

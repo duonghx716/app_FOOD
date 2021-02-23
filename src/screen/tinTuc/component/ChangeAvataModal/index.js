@@ -3,7 +3,11 @@ import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 import {launchCamera} from 'react-native-image-picker';
-const ChangeAvatarModal = ({isVisitableChange, onHideModalChange, onChangeAvatar}) => {
+const ChangeAvatarModal = ({
+  isVisitableChange,
+  onHideModalChange,
+  onChangeAvatar,
+}) => {
   const Camera = () => {
     launchCamera(
       {
@@ -15,7 +19,7 @@ const ChangeAvatarModal = ({isVisitableChange, onHideModalChange, onChangeAvatar
       },
       (response) => {
         {
-          onChangeAvatar(response.uri)
+          onChangeAvatar(response.uri);
           console.log('link image: ', response.uri);
         }
       },
@@ -23,13 +27,15 @@ const ChangeAvatarModal = ({isVisitableChange, onHideModalChange, onChangeAvatar
   };
   return (
     <Modal transparent={true} animationType="slide" visible={isVisitableChange}>
-      <TouchableOpacity onPress={onHideModalChange} style={styles.containerModal}>
+      <TouchableOpacity
+        onPress={onHideModalChange}
+        style={styles.containerModal}>
         <View style={styles.childContainerModal}>
           <Text style={{marginBottom: 20}}>Chọn phương thức</Text>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <TouchableOpacity
               onPress={() => {
-                Camera(),onHideModalChange
+                Camera(), onHideModalChange;
               }}
               style={styles.touchableOpacity}>
               <MaterialIcons name={'camera'} size={50} color="gray" />
