@@ -7,21 +7,10 @@ import Intro from '../screen/welcome/introSlider';
 import Login from '../screen/welcome/login';
 import Registration from '../screen/welcome/registration';
 import MainTaiKhoan from '../screen/taiKhoan/MainTaiKhoan';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
 const MainNavigation = () => {
-  // _storeData = async () => {
-  //   try {
-  //     await AsyncStorage.setItem(
-  //       'isCheckIntro',
-  //       'I like to save it.'
-  //     );
-  //   } catch (error) {
-  //     // Error saving data
-  //   }
-  // };
   return (
     <Stack.Navigator>
       <Stack.Screen

@@ -3,11 +3,16 @@ import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 import {launchCamera} from 'react-native-image-picker';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
+
 const ChangeAvatarModal = ({
   isVisitableChange,
   onHideModalChange,
-  onChangeAvatar,
+  // onChangeAvatar,
 }) => {
+  const userAuth = auth().currentUser;
+
   const Camera = () => {
     launchCamera(
       {
@@ -19,7 +24,10 @@ const ChangeAvatarModal = ({
       },
       (response) => {
         {
-          onChangeAvatar(response.uri);
+          database().ref(`/users/${userAuth.uid}`).update({
+            avatar: response.uri,
+          });
+          // onChangeAvatar(response.uri);
           console.log('link image: ', response.uri);
         }
       },

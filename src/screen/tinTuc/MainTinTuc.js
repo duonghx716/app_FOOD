@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import {
   Dimensions,
@@ -10,19 +10,13 @@ import {
   View,
 } from 'react-native';
 
-import {
-  coupon,
-  datHang,
-  logo_point,
-  profile_source,
-  Rewards,
-  tichDiem,
-} from '../../assets';
+import {coupon, datHang, logo_point, Rewards, tichDiem} from '../../assets';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import List from './component/List/List';
 import NotificationModal from './component/NotificationModal';
 import ProfileModal from './component/ProfileModal';
+import {AuthContext} from '../../navigator/AuthProvider';
 
 import {DATA} from './data/Data.js';
 import styles from './styles';
@@ -30,13 +24,17 @@ import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
 const {width, height} = Dimensions.get('screen');
-const user_name = 'Dương Hà';
 const point = 0;
 
+const checkInfo = (name, birthDay, numberPhone, gender) => {
+  name == null || birthDay == null || numberPhone == null || gender == null
+    ? null
+    : setIsProfileShow(true);
+};
 const MainTinTuc = ({navigation}) => {
   const [isNotificationShow, setIsNotificationShow] = useState(false);
   const [isProfileShow, setIsProfileShow] = useState(false);
-  const [user, setUser] = useState([]);
+  const {user, setUser} = useContext(AuthContext);
 
   const Lua_chon = ({image, title, name}) => (
     <TouchableOpacity
@@ -53,20 +51,22 @@ const MainTinTuc = ({navigation}) => {
       <Text style={{textAlign: 'center', fontSize: 11}}>{title}</Text>
     </TouchableOpacity>
   );
+
   useEffect(() => {
     const userAuth = auth().currentUser;
-    const userName = userAuth.name;
+    const name = user.name;
+    const birthDay = user.birthDay;
+    const numberPhone = user.numberPhone;
+    const gender = user.gender;
     const getUser = async () => {
       await database()
         .ref(`/users/${userAuth.uid}`)
         .on('value', (snapshot) => {
           setUser(snapshot.val());
-          userName ? null : setIsProfileShow(true);
-          console.log('A new node has been added', snapshot.val());
+          checkInfo(name, birthDay, numberPhone, gender);
         });
     };
     getUser();
-    console.log('userAuth: ', user);
   }, []);
   return (
     <View style={styles.container}>
@@ -77,7 +77,10 @@ const MainTinTuc = ({navigation}) => {
           onPress={() => {
             setIsProfileShow(true);
           }}>
-          <Image source={{uri: user.avatar}} style={styles.imageProfile} />
+          <Image
+            source={{uri: user.avatar || null}}
+            style={styles.imageProfile}
+          />
           <View style={{marginLeft: 7}}>
             <Text numberOfLines={1} style={styles.text_frontWeight_bold}>
               {user.name || 'ten cua ban'}

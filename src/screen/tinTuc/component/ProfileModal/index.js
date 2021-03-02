@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {logo_point} from '../../../../assets';
 import ChangeAvatarModal from '../ChangeAvataModal';
@@ -15,40 +16,25 @@ import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 
 const ProfileModal = ({isVisible, onHideModal}) => {
-  const [isAvatarLink, setIsAvatarLink] = useState(null);
   const [isVisibleChangeAvatarModal, setIsVisibleChangeAvatarModal] = useState(
     false,
   );
-
-  const [name, setName] = useState('');
-  const [birthDay, setBirthDay] = useState('');
-  const [gender, setGender] = useState('');
-  const [numberPhone, setNumberPhone] = useState('');
-  const [avatar, setAvatar] = useState(
-    'https://reactnative.dev/img/tiny_logo.png',
-  );
-
+  const [name, setName] = useState(null);
+  const [birthDay, setBirthDay] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [numberPhone, setNumberPhone] = useState(null);
   const [user, setUser] = useState([]);
-
   const userAuth = auth().currentUser;
-
   const click = () => {
-    // setUser({name, birthDay, gender, numberPhone, avatar});
     database().ref(`/users/${userAuth.uid}`).update({
       name: name,
       gender: gender,
       numberPhone: numberPhone,
       birthDay: birthDay,
     });
-    alert('thanh cong');
+    alert('thành công');
   };
   useEffect(() => {
-    database().ref(`/users/${userAuth.uid}`).update({
-      avatar: avatar,
-    });
-  }, [avatar]);
-  useEffect(() => {
-    // const userAuth = auth().currentUser;
     const getUser = async () => {
       await database()
         .ref(`/users/${userAuth.uid}`)
@@ -71,7 +57,7 @@ const ProfileModal = ({isVisible, onHideModal}) => {
                 setIsVisibleChangeAvatarModal(true);
               }}>
               <Image
-                source={{uri: user.avatar || avatar}}
+                source={{uri: user.avatar || null}}
                 style={styles.image_in_modal_profile}
                 resizeMode={'cover'}
               />
@@ -104,54 +90,41 @@ const ProfileModal = ({isVisible, onHideModal}) => {
           <View style={{flexDirection: 'column'}}>
             <View style={styles.view_item}>
               <Text style={styles.text_view_item}>Tên</Text>
-              <Text style={styles.textInput_view_item}>{user.name}</Text>
-              {/* <TextInput
+              <TextInput
                 style={styles.textInput_view_item}
                 onChangeText={(name) => setName(name)}
-                value={user.name}></TextInput> */}
+                value={name == null ? user.name : name}></TextInput>
             </View>
-
             <View style={styles.view_item}>
               <Text style={styles.text_view_item}>Sinh nhật</Text>
-              <Text style={styles.textInput_view_item}>{user.birthDay}</Text>
-
-              {/* <TextInput
+              <TextInput
                 style={styles.textInput_view_item}
                 onChangeText={(birthDay) => setBirthDay(birthDay)}
-                value={birthDay}
-              /> */}
+                value={birthDay == null ? user.birthDay : birthDay}
+              />
             </View>
-
             <View style={styles.view_item}>
               <Text style={styles.text_view_item}>Số Điện Thoại</Text>
-              <Text style={styles.textInput_view_item}>{user.numberPhone}</Text>
-
-              {/* <TextInput
+              <TextInput
                 style={styles.textInput_view_item}
+                keyboardType="numeric"
                 onChangeText={(numberPhone) => {
                   setNumberPhone(numberPhone);
                 }}
-                value={numberPhone}
-              /> */}
+                value={numberPhone == null ? user.numberPhone : numberPhone}
+              />
             </View>
-
             <View style={styles.view_item}>
               <Text style={styles.text_view_item}>Giới Tính</Text>
-              <Text style={styles.textInput_view_item}>{user.gender}</Text>
 
-              {/* <TextInput
+              <TextInput
                 style={styles.textInput_view_item}
                 onChangeText={(gender) => {
                   setGender(gender);
                 }}
-                value={gender}
-              /> */}
+                value={gender == null ? user.gender : gender}
+              />
             </View>
-
-            {/* <ProfileItem title="Tên" value={user.name} />
-            <ProfileItem title="Sinh nhật" value={user.birthday} />
-            <ProfileItem title="Số Điện Thoại" value={user.phoneNumber} />
-            <ProfileItem title="Giới Tính" value={user.gender} /> */}
           </View>
         </View>
       </View>
@@ -160,7 +133,7 @@ const ProfileModal = ({isVisible, onHideModal}) => {
         onHideModalChange={() => {
           setIsVisibleChangeAvatarModal(false);
         }}
-        onChangeAvatar={setAvatar}
+        // onChangeAvatar={setAvatar}
       />
     </Modal>
   );
