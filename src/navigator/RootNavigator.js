@@ -9,9 +9,9 @@ const RootNavigator = () => {
   const [initializing, setInitializing] = useState(true);
   const {user, setUser} = useContext(AuthContext);
 
-  const onAuthStateChanged = (user) => {
+  const onAuthStateChanged = async (user) => {
     console.log('set user: ', user);
-    setUser(user);
+    await setUser(user);
     if (initializing) setInitializing(false);
   };
 

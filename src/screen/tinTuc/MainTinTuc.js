@@ -26,16 +26,21 @@ import auth from '@react-native-firebase/auth';
 const {width, height} = Dimensions.get('screen');
 const point = 0;
 
-const checkInfo = (name, birthDay, numberPhone, gender) => {
-  name == null || birthDay == null || numberPhone == null || gender == null
-    ? null
-    : setIsProfileShow(true);
-};
 const MainTinTuc = ({navigation}) => {
   const [isNotificationShow, setIsNotificationShow] = useState(false);
   const [isProfileShow, setIsProfileShow] = useState(false);
-  const {user, setUser} = useContext(AuthContext);
-
+  // const {user, setUser} = useContext(AuthContext);
+  const [user, setUser] = useState({
+    avatar:
+      'https://1.bp.blogspot.com/-A7UYXuVWb_Q/XncdHaYbcOI/AAAAAAAAZhM/hYOevjRkrJEZhcXPnfP42nL3ZMu4PvIhgCLcBGAsYHQ/s1600/Trend-Avatar-Facebook%2B%25281%2529.jpg',
+    name: 'User Name',
+  });
+  // console.log('useContext: ', user);
+  const checkInfo = (name, birthDay, numberPhone, gender) => {
+    name == '' || birthDay == '' || numberPhone == '' || gender == ''
+      ? null
+      : setIsProfileShow(true);
+  };
   const Lua_chon = ({image, title, name}) => (
     <TouchableOpacity
       style={{
@@ -54,16 +59,16 @@ const MainTinTuc = ({navigation}) => {
 
   useEffect(() => {
     const userAuth = auth().currentUser;
-    const name = user.name;
-    const birthDay = user.birthDay;
-    const numberPhone = user.numberPhone;
-    const gender = user.gender;
+    // const name = user.name;
+    // const birthDay = user.birthDay;
+    // const numberPhone = user.numberPhone;
+    // const gender = user.gender;
     const getUser = async () => {
       await database()
         .ref(`/users/${userAuth.uid}`)
         .on('value', (snapshot) => {
           setUser(snapshot.val());
-          checkInfo(name, birthDay, numberPhone, gender);
+          // checkInfo(name, birthDay, numberPhone, gender);
         });
     };
     getUser();
@@ -78,12 +83,16 @@ const MainTinTuc = ({navigation}) => {
             setIsProfileShow(true);
           }}>
           <Image
-            source={{uri: user.avatar || null}}
+            source={{
+              uri:
+                user.avatar ||
+                'https://1.bp.blogspot.com/-A7UYXuVWb_Q/XncdHaYbcOI/AAAAAAAAZhM/hYOevjRkrJEZhcXPnfP42nL3ZMu4PvIhgCLcBGAsYHQ/s1600/Trend-Avatar-Facebook%2B%25281%2529.jpg',
+            }}
             style={styles.imageProfile}
           />
           <View style={{marginLeft: 7}}>
             <Text numberOfLines={1} style={styles.text_frontWeight_bold}>
-              {user.name || 'ten cua ban'}
+              {user.name || 'User Name'}
             </Text>
             <View style={{flexDirection: 'row'}}>
               <Text>Khách hàng mới</Text>

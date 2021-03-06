@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -44,6 +44,7 @@ const Registration = ({navigation}) => {
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
           console.log('That email address is already in use!');
+          alert('Email Đã được sư dụng');
         }
 
         if (error.code === 'auth/invalid-email') {

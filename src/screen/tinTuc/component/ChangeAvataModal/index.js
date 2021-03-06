@@ -2,15 +2,11 @@ import React from 'react';
 import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
-import {launchCamera} from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
-const ChangeAvatarModal = ({
-  isVisitableChange,
-  onHideModalChange,
-  // onChangeAvatar,
-}) => {
+const ChangeAvatarModal = ({isVisitableChange, onHideModalChange}) => {
   const userAuth = auth().currentUser;
 
   const Camera = () => {
@@ -24,14 +20,35 @@ const ChangeAvatarModal = ({
       },
       (response) => {
         {
-          database().ref(`/users/${userAuth.uid}`).update({
-            avatar: response.uri,
-          });
-          // onChangeAvatar(response.uri);
-          console.log('link image: ', response.uri);
+          database()
+            .ref(`/users/${userAuth.uid}`)
+            .update({
+              avatar: response.uri,
+            })
+            .then(onHideModalChange)
+            .catch((e) => {
+              console.error('error set avatar: ', e);
+            });
         }
       },
     );
+  };
+
+  const Album = () => {
+    launchImageLibrary({}, (response) => {
+      {
+        database()
+          .ref(`/users/${userAuth.uid}`)
+          .update({
+            avatar: response.uri,
+          })
+          .then(onHideModalChange)
+          .catch((e) => {
+            console.error('error set avatar: ', e);
+          });
+      }
+    });
+    alert('Album');
   };
   return (
     <Modal transparent={true} animationType="slide" visible={isVisitableChange}>
@@ -50,7 +67,7 @@ const ChangeAvatarModal = ({
               <Text>Camera</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => alert('album')}
+              onPress={() => Album()}
               style={styles.touchableOpacity}>
               <MaterialIcons name={'collections'} size={50} color="gray" />
               <Text>Album</Text>

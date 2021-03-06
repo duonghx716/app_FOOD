@@ -15,7 +15,13 @@ export default StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  image_in_modal_profile: {width: 120, height: 120, borderRadius: 60},
+  image_in_modal_profile: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderColor: 'blue',
+    borderWidth: 1,
+  },
   text_size: {fontSize: 20},
   TouchableOpacity_chang_profile: {
     backgroundColor: 'gray',
@@ -24,11 +30,28 @@ export default StyleSheet.create({
   },
   view_thongtin: {
     flexDirection: 'row',
-    backgroundColor: '#EEEEEE',
     justifyContent: 'center',
-    padding: 15,
   },
-  text_in_viewThongtin: {justifyContent: 'flex-start', flex: 1, fontSize: 18},
+
+  text_in_viewThongtin: {
+    padding: 10,
+    marginLeft: 15,
+    justifyContent: 'flex-start',
+    flex: 1,
+    fontSize: 18,
+    borderRadius: 5,
+    backgroundColor: '#EEEEEE',
+  },
+  text_cap_Nhap: {
+    padding: 10,
+    marginHorizontal: 15,
+    color: '#ffb042',
+    fontSize: 18,
+    fontWeight: 'bold',
+    borderRadius: 5,
+    borderColor: '#ffb042',
+    borderWidth: 1,
+  },
   containerModal: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.4)',
@@ -51,14 +74,10 @@ export default StyleSheet.create({
   view_item: {
     flexDirection: 'column',
     padding: 15,
-    // borderBottomColor: '#EEEEEE',
-    // borderBottomWidth: 1,
   },
-  text_view_item: {color: 'gray', fontSize: 15},
+  text_view_item: {color: 'gray', fontSize: 15, marginBottom: 3},
   textInput_view_item: {
     color: 'black',
-    borderColor: '#EEEEEE',
-    borderWidth: 1,
     backgroundColor: '#EEEEEE',
     borderRadius: 5,
     fontSize: 15,
