@@ -12,8 +12,11 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {logo_point} from '../../../../assets';
 import ChangeAvatarModal from '../ChangeAvataModal';
 import styles from './styles';
+
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {Picker} from '@react-native-picker/picker';
 
 const ProfileModal = ({isVisible, onHideModal}) => {
   const [isVisibleChangeAvatarModal, setIsVisibleChangeAvatarModal] = useState(
@@ -23,8 +26,30 @@ const ProfileModal = ({isVisible, onHideModal}) => {
   const [birthDay, setBirthDay] = useState(null);
   const [gender, setGender] = useState(null);
   const [numberPhone, setNumberPhone] = useState(null);
+
   const [user, setUser] = useState([]);
   const userAuth = auth().currentUser;
+  const [checkUpdateData, setCheckUpdateData] = useState(true);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    console.log(`ngay ${day} thang ${month} nam ${year}`);
+    setBirthDay(`${day}-${month}-${year}`);
+    hideDatePicker();
+  };
+
   const click = () => {
     database()
       .ref(`/users/${userAuth.uid}`)
@@ -33,25 +58,28 @@ const ProfileModal = ({isVisible, onHideModal}) => {
         gender: gender || user.gender,
         numberPhone: numberPhone || user.numberPhone,
         birthDay: birthDay || user.birthDay,
+      })
+      .then(() => {
+        setCheckUpdateData(!checkUpdateData);
       });
     alert('thành công');
   };
-  useEffect(
-    () => () => {
-      const getUser = async () => {
-        await database()
-          .ref(`/users/${userAuth.uid}`)
-          .on('value', (snapshot) => {
-            setUser(snapshot.val());
-            console.log('user hien tai', snapshot.val());
-          });
-      };
-      getUser();
-      console.log('user: ', user);
-      return getUser;
-    },
-    [],
-  );
+  const getUser = async () => {
+    try {
+      await database()
+        .ref(`/users/${userAuth.uid}`)
+        .on('value', (snapshot) => {
+          setUser(snapshot.val());
+          console.log('user hien tai', snapshot.val());
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getUser();
+    console.log('user: ', user);
+  }, []);
   return (
     <Modal visible={isVisible} animationType={'slide'} transparent={true}>
       <View style={[{...styles.container}, {backgroundColor: '#fff'}]}>
@@ -105,10 +133,16 @@ const ProfileModal = ({isVisible, onHideModal}) => {
           </View>
           <View style={styles.view_item}>
             <Text style={styles.text_view_item}>Sinh nhật</Text>
-            <TextInput
+            <TouchableOpacity
               style={styles.textInput_view_item}
-              onChangeText={(birthDay) => setBirthDay(birthDay)}
-              value={birthDay == null ? user.birthDay : birthDay}
+              onPress={showDatePicker}>
+              <Text>{birthDay == null ? user.birthDay : birthDay}</Text>
+            </TouchableOpacity>
+            <DateTimePickerModal
+              isVisible={isDatePickerVisible}
+              mode="date"
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
             />
           </View>
           <View style={styles.view_item}>
@@ -124,13 +158,14 @@ const ProfileModal = ({isVisible, onHideModal}) => {
           </View>
           <View style={styles.view_item}>
             <Text style={styles.text_view_item}>Giới Tính</Text>
-            <TextInput
+
+            <Picker
               style={styles.textInput_view_item}
-              onChangeText={(gender) => {
-                setGender(gender);
-              }}
-              value={gender == null ? user.gender : gender}
-            />
+              selectedValue={gender == null ? user.gender : gender}
+              onValueChange={(itemValue, itemIndex) => setGender(itemValue)}>
+              <Picker.Item label="Nam" value="Nam" />
+              <Picker.Item label="Nữ" value="Nu" />
+            </Picker>
           </View>
         </View>
       </View>
@@ -139,7 +174,6 @@ const ProfileModal = ({isVisible, onHideModal}) => {
         onHideModalChange={() => {
           setIsVisibleChangeAvatarModal(false);
         }}
-        // onChangeAvatar={setAvatar}
       />
     </Modal>
   );

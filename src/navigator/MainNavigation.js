@@ -2,11 +2,14 @@ import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Main from '../screen/Main';
+
 import Welcome from '../screen/welcome/Welcome';
 import Intro from '../screen/welcome/introSlider';
 import Login from '../screen/welcome/login';
+
 import Registration from '../screen/welcome/registration';
 import MainTaiKhoan from '../screen/taiKhoan/MainTaiKhoan';
+import WebView from '../screen/tinTuc/component/WebView/webView';
 
 const Stack = createStackNavigator();
 
@@ -54,6 +57,13 @@ const MainNavigation = () => {
         })}
         name="Main"
         component={Main}
+      />
+      <Stack.Screen
+        options={({}) => ({
+          headerShown: false,
+        })}
+        name="WebView"
+        component={WebView}
       />
     </Stack.Navigator>
   );

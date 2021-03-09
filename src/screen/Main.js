@@ -6,11 +6,13 @@ import MainCuaHang from './cuaHang/MainCuaHang';
 import MainDatHang from './datHang/MainDatHang';
 import MainTaiKhoan from './taiKhoan/MainTaiKhoan';
 import MainTinTuc from './tinTuc/MainTinTuc';
+// import WebView from '../screen/tinTuc/component/WebView/webView';
 
 const Tab = createBottomTabNavigator();
 const Main = () => {
   return (
     <Tab.Navigator
+      initialRouteName="TinTuc"
       tabBarOptions={{
         showLabel: true,
         labelStyle: {
@@ -62,6 +64,7 @@ const Main = () => {
           ),
         }}
       />
+      {/* <Tab.Screen name="WebView" component={WebView} /> */}
     </Tab.Navigator>
   );
 };
