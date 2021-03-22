@@ -1,14 +1,56 @@
 import React from 'react';
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
+import {Modal, Text, TouchableOpacity, View, Alert} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
+
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
 
 const ChangeAvatarModal = ({isVisitableChange, onHideModalChange}) => {
   const userAuth = auth().currentUser;
 
+  const updating = async (response) => {
+    let avatarContent = response.uri;
+    let FileName = avatarContent.substring(avatarContent.lastIndexOf('/') + 1);
+    const task = storage().ref(FileName).putFile(avatarContent);
+
+    // task.on('state_changed', (taskSnapshot) => {
+    //   console.log(
+    //     'state_changed',
+    //     `${taskSnapshot.bytesTransferred} transferred of ${taskSnapshot.totalBytes}`,
+    //   );
+    //   // setTransferred(
+    //   //   Math.round(
+    //   //     (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100,
+    //   //   ),
+    //   // );
+    // });
+
+    try {
+      await task;
+      task.then((url) => {
+        storage()
+          .ref(url.metadata.fullPath)
+          .getDownloadURL()
+          .then((DownloadURL) => {
+            // console.log(DownloadURL);
+            database()
+              .ref(`/users/${userAuth.uid}`)
+              .update({
+                avatar: DownloadURL,
+              })
+              .then(onHideModalChange)
+              .catch((e) => {
+                console.error('error set avatar: ', e);
+              });
+          });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const Camera = () => {
     launchCamera(
       {
@@ -19,34 +61,13 @@ const ChangeAvatarModal = ({isVisitableChange, onHideModalChange}) => {
         maxWidth: 200,
       },
       (response) => {
-        {
-          database()
-            .ref(`/users/${userAuth.uid}`)
-            .update({
-              avatar: response.uri,
-            })
-            .then(onHideModalChange)
-            .catch((e) => {
-              console.error('error set avatar: ', e);
-            });
-        }
+        updating(response);
       },
     );
   };
-
   const Album = () => {
     launchImageLibrary({}, (response) => {
-      {
-        database()
-          .ref(`/users/${userAuth.uid}`)
-          .update({
-            avatar: response.uri,
-          })
-          .then(onHideModalChange)
-          .catch((e) => {
-            console.error('error set avatar: ', e);
-          });
-      }
+      updating(response);
     });
     alert('Album');
   };
@@ -60,7 +81,7 @@ const ChangeAvatarModal = ({isVisitableChange, onHideModalChange}) => {
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <TouchableOpacity
               onPress={() => {
-                Camera(), onHideModalChange;
+                Camera();
               }}
               style={styles.touchableOpacity}>
               <MaterialIcons name={'camera'} size={50} color="gray" />

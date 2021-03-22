@@ -1,16 +1,12 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import styles from '../../styles';
-// import WebView from '../WebView/webView';
 import {useNavigation} from '@react-navigation/native';
 const List = (props) => {
   const navigation = useNavigation();
-
   const Item = React.memo(({item}) => {
     const click = (items) => {
-      // navigation.navigate('WebView');
-      // navigation.navigate('WebView', {screen: 'TinTuc'});
-      alert(items.url);
+      navigation.push('WebView', {url: items.url});
     };
     return (
       <View style={styles.view_item}>
@@ -21,7 +17,7 @@ const List = (props) => {
           resizeMode="stretch"
           style={{width: 220, height: 120}}
         />
-        <View style={{}}>
+        <View>
           <Text numberOfLines={2} style={styles.text_title}>
             {item.title}
           </Text>
@@ -36,13 +32,7 @@ const List = (props) => {
         </View>
       </View>
     );
-  }, areEqual);
-
-  const areEqual = (prev, next) => {
-    console.log({prev, next});
-    return false;
-  };
-
+  });
   return (
     <View>
       <Text style={styles.text_title_luachon}>{props.title}</Text>
@@ -50,7 +40,7 @@ const List = (props) => {
         data={props.DATA}
         horizontal
         showsHorizontalScrollIndicator={false}
-        // keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => <Item item={item} />}
       />
     </View>

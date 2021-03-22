@@ -1,21 +1,7 @@
-// Example of Animated Splash Screen in React Native
-// https://aboutreact.com/animated-splash-screen/
-
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import {AuthContext} from '../../navigator/AuthProvider';
-const Welcome = ({navigation}) => {
-  const {user} = React.useContext(AuthContext);
 
-  useEffect(() => {
-    setTimeout(() => {
-      console.log('user in welcome: ', user);
-      {
-        user ? navigation.navigate('Login') : navigation.navigate('Intro');
-      }
-    }, 3000);
-  }, []);
-
+const Welcome = () => {
   return (
     <View style={styles.container}>
       <Image

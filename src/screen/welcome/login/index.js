@@ -11,30 +11,15 @@ import {
   View,
 } from 'react-native';
 import styles from './styles';
+import {AuthContext} from '../../../navigator/AuthProvider';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const Login = (email, password) => {
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        navigation.navigate('Main');
-        console.log('Đăng nhập thành công');
-        ToastAndroid.show('Đăng nhập thành công', ToastAndroid.LONG);
-      })
-      .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
-
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-
-        console.error(error);
-      });
+  const {login} = React.useContext(AuthContext);
+  const ClickLogin = (e, p) => {
+    login(e, p);
+    ToastAndroid.show('Đăng nhập thành công', ToastAndroid.LONG);
   };
   return (
     <ImageBackground
@@ -78,7 +63,7 @@ const Login = ({navigation}) => {
         </KeyboardAvoidingView>
 
         <TouchableOpacity
-          onPress={() => Login(email, password)}
+          onPress={() => ClickLogin(email, password)}
           style={[styles.TouchableHighlightStyle, {marginTop: 7}]}>
           <Text style={[styles.TextStyle, {fontSize: 17}]}>Sign in</Text>
         </TouchableOpacity>

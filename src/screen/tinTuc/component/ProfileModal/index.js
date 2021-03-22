@@ -78,7 +78,6 @@ const ProfileModal = ({isVisible, onHideModal}) => {
   };
   useEffect(() => {
     getUser();
-    console.log('user: ', user);
   }, []);
   return (
     <Modal visible={isVisible} animationType={'slide'} transparent={true}>

@@ -19,7 +19,6 @@ export default StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    borderColor: 'blue',
     borderWidth: 1,
   },
   text_size: {fontSize: 20},

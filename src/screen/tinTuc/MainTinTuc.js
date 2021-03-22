@@ -16,14 +16,13 @@ import List from './component/List/List';
 import NotificationModal from './component/NotificationModal';
 import ProfileModal from './component/ProfileModal';
 
-// import {DATA} from './data/Data.js';
 import styles from './styles';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
-// import WebView from './component/WebView/webView';
 import axios from 'axios';
+
 import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay';
-// import {set} from 'react-native-reanimated';
+import storage from '@react-native-firebase/storage';
 
 const {width, height} = Dimensions.get('screen');
 const point = 1000;
@@ -58,6 +57,13 @@ const MainTinTuc = ({navigation}) => {
     </TouchableOpacity>
   );
   const userAuth = auth().currentUser;
+  const getAvatar = (user) => {
+    let avatar = user.avatar;
+    console.log(' avatar chua get: ', avatar);
+    const url = storage().ref(avatar).getDownloadURL();
+    console.log('url da get: ', url);
+    setUser({avatar: url});
+  };
   const getUser = async () => {
     await database()
       .ref(`/users/${userAuth.uid}`)
